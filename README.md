@@ -35,3 +35,10 @@ Diseño y construcción de un sistema, únicamente con el uso de compuertas bás
 ---
 
 El diseño de circuitos lógicos combinacionales constituye un pilar fundamental en la electrónica digital, permitiendo la toma de decisiones basada en combinaciones específicas de señales de entrada mediante el uso de compuertas lógicas como NOT y AND. En múltiples áreas de la ingeniería y la vida cotidiana, la gestión y ordenamiento de prioridades resultan esenciales para garantizar una respuesta ordenada frente a distintas condiciones. Un ejemplo claro se observa en los sistemas de atención hospitalaria en salas de urgencias, donde es imprescindible clasificar y canalizar eficientemente a los pacientes en función de la gravedad de su estado (súper-emergencia, emergencia o chequeo rutinario). En la presente práctica se aborda el diseño, análisis e implementación de un sistema combinacional de control de prioridad para la entrada a una sala de urgencias. A partir de las especificaciones requeridas, se formula la tabla de verdad y se realiza la simplificación de funciones booleanas mediante mapas de Karnaugh. Posteriormente, se lleva a cabo la implementación del circuito lógico haciendo uso de circuitos integrados discretos (74LS04 y 74LS08), verificando su correcto funcionamiento práctico mediante indicadores LED que representan visualmente la prioridad de acceso otorgada.
+
+---
+
+### Proyecto 3 — Muxes and Decoders (Sistema de supervisión de 9 puntos)
+---
+
+Diseño e implementación de un sistema de seguridad y supervisión para un edificio de 9 puntos de acceso utilizando circuitos integrados de mediana escala de integración (MSI). El sistema monitorea en tiempo real las intrusiones mediante un codificador de prioridad decimal a BCD (74LS147), un inversor séxtuple (74LS04) para adecuar los niveles lógicos activos en bajo a lógica positiva, y un decodificador BCD a 7 segmentos (74LS47/74LS48) que despliega de forma inmediata en un display de 7 segmentos el número exacto del punto o sector vulnerado.
