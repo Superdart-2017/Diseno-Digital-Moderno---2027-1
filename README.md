@@ -16,9 +16,9 @@ Son dos programas en C en donde el primer código llamado "Conversor_Numerico.c"
 
 Para poder probar cada código se debe de usar su respectivo comando de compilación:
 
-Para "Conversor_Numerico.c": gcc Conversor_Numerico.c -o Conversor_Numerico.exe -lm
+Para "Conversor_Numerico.c": `gcc Conversor_Numerico.c -o Conversor_Numerico.exe -lm`
 
-Para "Sumador_Binario.c": gcc Sumador_Binario.c -o Sumador_Binario.exe
+Para "Sumador_Binario.c": `gcc Sumador_Binario.c -o Sumador_Binario.exe`
 
 
 ## Proyecto 1 y 2
@@ -42,3 +42,18 @@ El diseño de circuitos lógicos combinacionales constituye un pilar fundamental
 ---
 
 Diseño e implementación de un sistema de seguridad y supervisión para un edificio de 9 puntos de acceso utilizando circuitos integrados de mediana escala de integración (MSI). El sistema monitorea en tiempo real las intrusiones mediante un codificador de prioridad decimal a BCD (74LS147), un inversor séxtuple (74LS04) para adecuar los niveles lógicos activos en bajo a lógica positiva, y un decodificador BCD a 7 segmentos (74LS47/74LS48) que despliega de forma inmediata en un display de 7 segmentos el número exacto del punto o sector vulnerado.
+
+---
+
+### Proyecto Parcial 1 — Unidad Lógica Combinacional de 2 bits (ALU Discreta)
+---
+
+Diseño, implementación y verificación en protoboard de una unidad combinacional aritmético-lógica de 2 bits construida con circuitos integrados de lógica discreta TTL, prescindiendo del uso de microcontroladores. 
+
+El sistema procesa dos números binarios de 2 bits ($A$ y $B$) y permite seleccionar, mediante dos líneas de control ($S_1, S_0$), una de cuatro operaciones fundamentales:
+* **SUM:** Suma binaria con acarreo ($A + B$) mediante el sumador 74LS283.
+* **XOR:** Operación bit a bit ($A \oplus B$) con compuertas 74LS86.
+* **AND:** Operación bit a bit ($A \cdot B$) con compuertas 74LS08.
+* **MAX:** Obtención del valor máximo entre $A$ y $B$ mediante comparación de magnitud y lógica de selección (74LS04, 74LS08 y 74LS32).
+
+El enrutamiento de los resultados se realiza a través de multiplexores dobles de 4 a 1 líneas (74LS153) y se despliega en un display de 7 segmentos mediante el decodificador/driver BCD 74LS47. Adicionalmente, el circuito integra una entrada de habilitación global (**ENABLE**) y un decodificador de 2 a 4 líneas (74LS139) acoplado a un arreglo de 4 LEDs para indicar visualmente la operación seleccionada.
