@@ -51,9 +51,33 @@ Diseño e implementación de un sistema de seguridad y supervisión para un edif
 Diseño, implementación y verificación en protoboard de una unidad combinacional aritmético-lógica de 2 bits construida con circuitos integrados de lógica discreta TTL, prescindiendo del uso de microcontroladores. 
 
 El sistema procesa dos números binarios de 2 bits ($A$ y $B$) y permite seleccionar, mediante dos líneas de control ($S_1, S_0$), una de cuatro operaciones fundamentales:
-* **SUM:** Suma binaria con acarreo ($A + B$) mediante el sumador 74LS283.
-* **XOR:** Operación bit a bit ($A \oplus B$) con compuertas 74LS86.
-* **AND:** Operación bit a bit ($A \cdot B$) con compuertas 74LS08.
-* **MAX:** Obtención del valor máximo entre $A$ y $B$ mediante comparación de magnitud y lógica de selección (74LS04, 74LS08 y 74LS32).
+- **SUM:** Suma binaria con acarreo ($A + B$) mediante el sumador 74LS283.
+- **XOR:** Operación bit a bit ($A \oplus B$) con compuertas 74LS86.
+- **AND:** Operación bit a bit ($A \cdot B$) con compuertas 74LS08.
+- **MAX:** Obtención del valor máximo entre $A$ y $B$ mediante comparación de magnitud y lógica de selección (74LS04, 74LS08 y 74LS32).
 
 El enrutamiento de los resultados se realiza a través de multiplexores dobles de 4 a 1 líneas (74LS153) y se despliega en un display de 7 segmentos mediante el decodificador/driver BCD 74LS47. Adicionalmente, el circuito integra una entrada de habilitación global (**ENABLE**) y un decodificador de 2 a 4 líneas (74LS139) acoplado a un arreglo de 4 LEDs para indicar visualmente la operación seleccionada.
+
+---
+
+### ⏱️ Proyecto 5 — Temporizadores y Contadores Binarios
+---
+
+Diseño y construcción de un tren de pulsos y un contador binario síncrono modular con visualización decimal en display de 7 segmentos cátodo común.
+
+El sistema comprende tres etapas funcionales:
+- **Base de Tiempo (Reloj):** Temporizador analógico NE555 configurado en modo multivibrador astable, cuya frecuencia de conmutación se ajusta mediante una red RC formada por un potenciómetro de $10\text{ k}\Omega$ y capacitores de temporización.
+- **Conteo Síncrono y Truncamiento:** Contador binario de 4 bits (74LS193 / 74HC93 en simulación) que incrementa su estado con cada flanco de reloj. Implementa un lazo de retroalimentación hacia la entrada de reinicio ($CLR = Q_D \cdot Q_B$) para resetear la cuenta al alcanzar el número binario $1010_2$ (10 decimal), restringiendo el ciclo de cuenta al intervalo $0-9$.
+- **Decodificación y Despliegue:** Conversión de código binario BCD a formato de 7 segmentos mediante un circuito decodificador (74LS48 / CD4511), mostrando los dígitos de manera secuencial y continua a través de resistencias limitadoras de $330\ \Omega$.
+
+---
+
+### 🔄 Proyecto 6 — Registros de Corrimiento (Display de Mensaje Dinámico)
+---
+
+Diseño e implementación de un sistema digital secuencial sincronizado capaz de proyectar un mensaje en movimiento dinámico ("LA OLA") a través de un arreglo de cuatro displays de 7 segmentos de cátodo común.
+
+La arquitectura integra:
+- **Generador de Sincronía:** Temporizador NE555 en modo oscilador para dictar el ritmo de desplazamiento del texto.
+- **Direccionamiento y Almacenamiento:** Contador binario 74LS193 que recorre secuencialmente las direcciones de una memoria EPROM ($8\times 8$ registros), la cual almacena los patrones de bits correspondientes a los caracteres alfanuméricos y espacios en blanco del mensaje.
+- **Desplazamiento en Cascada:** Arreglo de cuatro registros de corrimiento bidireccionales/universales 74LS199 (flip-flops tipo D interconectados) que reciben las palabras binarias en paralelo y transfieren la información de segmento a segmento en cada flanco de subida de reloj hacia las pantallas de visualización.
