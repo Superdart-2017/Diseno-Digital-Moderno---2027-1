@@ -60,6 +60,17 @@ El enrutamiento de los resultados se realiza a través de multiplexores dobles d
 
 ---
 
+### 📡 Proyecto 4 — Comunicación Inalámbrica por Radiofrecuencia (RF 433 MHz)
+---
+
+Diseño e implementación de un enlace de transmisión y recepción inalámbrica de datos digitales unidireccional a 433 MHz, integrando módulos de radiofrecuencia con circuitos codificadores y decodificadores dedicados para actuar como entradas a un sistema digital.
+
+El enlace se estructura en dos subsistemas principales:
+- **Transmisor (FS1000A + HT12E):** El codificador HT12E toma el estado de 4 entradas paralelas controladas por push buttons (`AD0`–`AD3`) polarizadas con lógica activa en bajo y las empaqueta junto con 8 bits de dirección local (`A0`–`A7`), empleando una resistencia osciladora externa de $1\text{ M}\Omega$. Dicha trama digital se serializa por su pin `DOUT` hacia el transmisor FS1000A (alimentado a $9\text{ V}$), modulando en amplitud por desplazamiento (**ASK** / On-Off Keying) la portadora de 433 MHz enviada a través de una antena de $30\text{ cm}$.
+- **Receptor (XY-MK-5V + HT12D):** El módulo receptor captura y demodula la señal de radiofrecuencia a $5\text{ V}$, entregando el tren de pulsos serial al pin `DIN` del decodificador HT12D (oscilador con resistencia de $47\text{ k}\Omega$). Tras validar tres veces la concordancia de dirección, el HT12D activa la bandera de recepción válida (`VT`) y proyecta el estado de los 4 canales decodificados ($L_1 = B_0, L_2 = B_1, L_3 = B_2, L_4 = B_3$) directamente sobre un arreglo de 4 LEDs con resistencias limitadoras de $220\ \Omega$.
+
+---
+
 ### ⏱️ Proyecto 5 — Temporizadores y Contadores Binarios
 ---
 
