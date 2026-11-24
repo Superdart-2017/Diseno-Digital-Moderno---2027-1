@@ -1,13 +1,13 @@
 # Diseño-Digital-Moderno-2027-1
 
-Repositorio del equipo para la materia Diseño Digital Moderno (Grupo 5), Facultad de Ingeniería, UNAM. Semestre 2027-1.
+Repositorio del equipo para la materia Diseño Digital Moderno (Grupo 5), Facultad de Ingeniería, UNAM. Semestre 2027-1[cite: 1].
 
 # Integrantes
 ---
 
-- Carpizo Garduño Andrés
-- Mata Ramírez Ximena
-- Solís Fuentes José Enrique
+- Carpizo Garduño Andrés[cite: 1]
+- Mata Ramírez Ximena[cite: 1]
+- Solís Fuentes José Enrique[cite: 1]
 
 ## Tarea 1 — Sistemas numéricos y sumador binario
 --- 
@@ -92,3 +92,16 @@ La arquitectura integra:
 - **Generador de Sincronía:** Temporizador NE555 en modo oscilador para dictar el ritmo de desplazamiento del texto.
 - **Direccionamiento y Almacenamiento:** Contador binario 74LS193 que recorre secuencialmente las direcciones de una memoria EPROM ($8\times 8$ registros), la cual almacena los patrones de bits correspondientes a los caracteres alfanuméricos y espacios en blanco del mensaje.
 - **Desplazamiento en Cascada:** Arreglo de cuatro registros de corrimiento bidireccionales/universales 74LS199 (flip-flops tipo D interconectados) que reciben las palabras binarias en paralelo y transfieren la información de segmento a segmento en cada flanco de subida de reloj hacia las pantallas de visualización.
+
+---
+
+### 📟 Proyecto Final — Decodificador de Clave Morse (Máquina de Estados Secuencial)
+---
+
+Diseño, construcción y verificación en protoboard de un sistema digital secuencial con estados explícitos capaz de capturar secuencias de exactamente tres símbolos en código Morse mediante pulsadores independientes (**PUNTO** `·` y **RAYA** `−`), decodificar las ocho combinaciones posibles (**S, U, R, W, D, K, G, O**) y retener el resultado hasta recibir una señal de reinicio (**RESET**), implementado íntegramente con lógica discreta CMOS familia 74HC sin microcontroladores[cite: 2, 3, 4, 9].
+
+La arquitectura funcional del sistema se divide en las siguientes etapas[cite: 7]:
+- **Acondicionamiento y Antirrebote:** Cuatro pulsadores (`PUNTO`, `RAYA`, `CONFIRMAR` y `RESET` activo en bajo) polarizados con resistencias de $10\text{ k}\Omega$, acoplados a filtros pasivos RC ($100\text{ nF}$) y un inversor disparador Schmitt (**74HC14**) para eliminar rebotes mecánicos y evitar zonas lógicas indefinidas[cite: 2, 4, 7, 8].
+- **Lógica de Habilitación y Protección:** Implementación de compuertas XOR (**74HC86**) y AND (**74HC08**) que habilitan el avance de estado únicamente cuando se presiona un solo símbolo a la vez ($\text{PUNTO} \oplus \text{RAYA} = 1$, ignorando pulsaciones simultáneas) y siempre que la longitud de la secuencia sea menor a tres ($n < 3$)[cite: 3, 5, 7, 9].
+- **Memoria Secuencial y Máquina de Estados:** Dos registros de corrimiento universales (**74HC194**) almacenan tanto los bits correspondientes a los símbolos capturados (`0` para punto, `1` para raya) como el conteo de longitud $n$, transitando desde el estado inicial `E0` hasta los estados bloqueados de nivel 3 (`ES`–`EO`)[cite: 2, 3, 6, 7].
+- **Validación y Despliegue de Salida:** Un flip-flop tipo D (**74HC74**) enclava la bandera `VALID = 1` al presionar `CONFIRMAR` únicamente cuando $n = 3$, habilitando mediante compuertas AND la proyección del código binario correspondiente (`000` a `111`) en tres LEDs indicadores (`LED2`, `LED1`, `LED0`) más un LED de estado `VALID`[cite: 2, 4, 6, 7].
